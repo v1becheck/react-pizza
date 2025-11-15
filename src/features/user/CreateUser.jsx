@@ -1,13 +1,18 @@
-import { useState, useEffect } from 'react';
-import Button from '../../ui/Button';
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { updateName } from "./userSlice";
+import Button from "../../ui/Button";
 
 function CreateUser() {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [showButton, setShowButton] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (username !== '') {
+    if (username !== "") {
       setShowButton(true);
       setIsExiting(false);
     } else if (showButton) {
@@ -22,6 +27,10 @@ function CreateUser() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!username) return;
+    dispatch(updateName(username));
+    navigate("/menu");
   }
 
   return (
@@ -39,7 +48,7 @@ function CreateUser() {
       />
 
       {showButton && (
-        <div className={isExiting ? 'button-exit' : 'button-enter'}>
+        <div className={isExiting ? "button-exit" : "button-enter"}>
           <Button type="primary">Start ordering</Button>
         </div>
       )}
