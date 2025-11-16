@@ -1,5 +1,7 @@
 # React + Vite
 
+This project is a pizza ordering system built with React, Vite, Tailwind CSS, React Router, React Hook Form, Redux Toolkit, and Redux Thunks.
+
 Tech Stack:
 
 - React
@@ -19,6 +21,9 @@ Tech Stack:
   - useDeferredValue
   - useId
 - Redux Toolkit (UI State Management)
+- Redux Thunks (Async Actions)
+- Geocoding API (for getting the user's address)
+  - https://www.bigdatacloud.com/geocoding-apis/free-reverse-geocode-to-city-api
 
 ### Tailwind CSS
 
@@ -41,6 +46,8 @@ Tech Stack:
   },
 ```
 
-Check documentation for more details:
-https://tailwindcss.com/docs/installation/using-vite
-https://github.com/tailwindlabs/prettier-plugin-tailwindcss
+- Check documentation for more details:
+  - https://tailwindcss.com/docs/installation/using-vite
+  - https://github.com/tailwindlabs/prettier-plugin-tailwindcss
+
+- Use VC Code extension Tailwind CSS IntelliSense for autocomplete, syntax highlighting, and linting
