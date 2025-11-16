@@ -20,6 +20,7 @@ Tech Stack:
   - useTransition
   - useDeferredValue
   - useId
+  - useFetcher
 - Redux Toolkit (UI State Management)
 - Redux Thunks (Async Actions)
 - Geocoding API (for getting the user's address)
