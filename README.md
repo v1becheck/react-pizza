@@ -2,6 +2,8 @@
 
 This project is a pizza ordering system built with React, Vite, Tailwind CSS, React Router, React Hook Form, Redux Toolkit, and Redux Thunks.
 
+Prod: https://react-pizza-one-sage.vercel.app/
+
 Tech Stack:
 
 - React
