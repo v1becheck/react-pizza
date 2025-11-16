@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
@@ -9,6 +10,7 @@ import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  const [imageError, setImageError] = useState(false);
   const dispatch = useDispatch();
   const cart = useSelector(getCart);
   const isInCart = cart.some((item) => item.pizzaId === id);
@@ -30,11 +32,14 @@ function MenuItem({ pizza }) {
 
   return (
     <li className="flex gap-4 py-2">
-      <img
-        src={imageUrl}
-        alt={name}
-        className={`h-24 ${soldOut ? "opacity-70 grayscale" : ""}`}
-      />
+      {!imageError && (
+        <img
+          src={imageUrl}
+          alt={name}
+          className={`h-24 ${soldOut ? "opacity-70 grayscale" : ""}`}
+          onError={() => setImageError(true)}
+        />
+      )}
       <div className="flex grow flex-col pt-0.5">
         <p className="font-medium">{name}</p>
         <p className="text-sm text-stone-500 capitalize italic">
