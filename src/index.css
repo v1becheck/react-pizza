@@ -75,4 +75,23 @@
         100% 100%;
     }
   }
+
+  .open-cart-link {
+    @apply rounded-full px-4 py-2 font-semibold tracking-wide text-yellow-100 transition;
+    border: 2px solid theme(colors.yellow.400);
+    animation: open-cart-pulse 2.5s ease-in-out infinite;
+    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4);
+  }
+
+  @keyframes open-cart-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.5);
+      border-color: theme(colors.yellow.300);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgba(250, 204, 21, 0);
+      border-color: theme(colors.yellow.500);
+    }
+  }
 }
