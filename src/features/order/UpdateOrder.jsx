@@ -7,7 +7,8 @@ import Loader from "../../ui/Loader";
 function UpdateOrder({ order }) {
   const fetcher = useFetcher();
   const priorityPrice = order.orderPrice * 0.2;
-  const isUpdating = fetcher.state === "submitting";
+  const isUpdating =
+    fetcher.state === "submitting" || fetcher.state === "loading";
 
   return (
     <>
