@@ -26,44 +26,46 @@ function SearchOrder() {
 
   return (
     <form onSubmit={handleSubmit} className="flex items-center gap-4">
-      <Link
-        to="/cart"
-        className={cartLinkClasses}
-        aria-hidden={!hasCartItems}
-        tabIndex={hasCartItems ? 0 : -1}
-      >
-        <span
-          aria-hidden="true"
-          className={`flex h-9 w-9 items-center justify-center rounded-full border text-stone-800 shadow-sm transition-all duration-300 ${
-            hasCartItems
-              ? "border-yellow-400 bg-yellow-200 group-hover:border-yellow-500 group-hover:bg-yellow-100"
-              : "border-transparent bg-transparent"
-          }`}
+      <div className="w-[140px] shrink-0 sm:w-[140px]">
+        <Link
+          to="/cart"
+          className={cartLinkClasses}
+          aria-hidden={!hasCartItems}
+          tabIndex={hasCartItems ? 0 : -1}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+          <span
+            aria-hidden="true"
+            className={`flex h-9 w-9 items-center justify-center rounded-full border text-stone-800 shadow-sm transition-all duration-300 ${
+              hasCartItems
+                ? "border-yellow-400 bg-yellow-200 group-hover:border-yellow-500 group-hover:bg-yellow-100"
+                : "border-transparent bg-transparent"
+            }`}
           >
-            <circle cx="9" cy="21" r="1.5" />
-            <circle cx="18" cy="21" r="1.5" />
-            <path d="M3 4h2l2.4 9a2 2 0 0 0 1.94 1.5h7.72a2 2 0 0 0 1.94-1.5L21 7H7.5" />
-          </svg>
-        </span>
-        <span
-          className={`flex flex-col text-left leading-tight transition-opacity duration-300 ${
-            hasCartItems ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <span>{totalCartQuantity} pizzas</span>
-          <span>{formatCurrency(totalCartPrice)}</span>
-        </span>
-      </Link>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="9" cy="21" r="1.5" />
+              <circle cx="18" cy="21" r="1.5" />
+              <path d="M3 4h2l2.4 9a2 2 0 0 0 1.94 1.5h7.72a2 2 0 0 0 1.94-1.5L21 7H7.5" />
+            </svg>
+          </span>
+          <span
+            className={`flex flex-col text-left leading-tight transition-opacity duration-300 ${
+              hasCartItems ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <span>{totalCartQuantity} pizzas</span>
+            <span>{formatCurrency(totalCartPrice)}</span>
+          </span>
+        </Link>
+      </div>
 
       <label htmlFor="search-order" className="sr-only">
         Search order number
