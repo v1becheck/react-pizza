@@ -9,6 +9,13 @@ function SearchOrder() {
   const navigate = useNavigate();
   const totalCartQuantity = useSelector(getTotalCartQuantity);
   const totalCartPrice = useSelector(getTotalCartPrice);
+  const hasCartItems = totalCartQuantity > 0;
+  const cartLinkClasses = [
+    "group flex items-center gap-2 rounded-full border-2 text-xs font-semibold tracking-wide uppercase text-stone-800 shadow-sm transition-all duration-300",
+    hasCartItems
+      ? "border-yellow-300/80 bg-yellow-100/80 px-3 py-1.5 opacity-100 scale-100 translate-y-0"
+      : "pointer-events-none border-transparent bg-transparent px-0 py-0 opacity-0 scale-95 -translate-y-1",
+  ].join(" ");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -21,11 +28,17 @@ function SearchOrder() {
     <form onSubmit={handleSubmit} className="flex items-center gap-4">
       <Link
         to="/cart"
-        className="group flex items-center gap-2 rounded-full border-2 border-yellow-300/80 bg-yellow-100/80 px-3 py-1.5 text-xs font-semibold tracking-wide text-stone-800 uppercase shadow-sm transition hover:border-yellow-500 hover:bg-yellow-200 hover:text-stone-900"
+        className={cartLinkClasses}
+        aria-hidden={!hasCartItems}
+        tabIndex={hasCartItems ? 0 : -1}
       >
         <span
           aria-hidden="true"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-yellow-400 bg-yellow-200 text-stone-800 shadow-sm transition group-hover:border-yellow-500 group-hover:bg-yellow-100"
+          className={`flex h-9 w-9 items-center justify-center rounded-full border text-stone-800 shadow-sm transition-all duration-300 ${
+            hasCartItems
+              ? "border-yellow-400 bg-yellow-200 group-hover:border-yellow-500 group-hover:bg-yellow-100"
+              : "border-transparent bg-transparent"
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,14 +55,14 @@ function SearchOrder() {
             <path d="M3 4h2l2.4 9a2 2 0 0 0 1.94 1.5h7.72a2 2 0 0 0 1.94-1.5L21 7H7.5" />
           </svg>
         </span>
-        {totalCartQuantity ? (
-          <span className="flex flex-col text-left leading-tight">
-            <span>{totalCartQuantity} pizzas</span>
-            <span>{formatCurrency(totalCartPrice)}</span>
-          </span>
-        ) : (
-          <span>Open cart</span>
-        )}
+        <span
+          className={`flex flex-col text-left leading-tight transition-opacity duration-300 ${
+            hasCartItems ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <span>{totalCartQuantity} pizzas</span>
+          <span>{formatCurrency(totalCartPrice)}</span>
+        </span>
       </Link>
 
       <label htmlFor="search-order" className="sr-only">
